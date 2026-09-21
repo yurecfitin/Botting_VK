@@ -4,7 +4,7 @@ from telebot import types
 from telebot.asyncio_helper import delete_webhook
 import sqlite3
 
-db = sqlite3.connect(DB_PATH)
+db = sqlite3.connect("DB_PATH")
 cur = db.cursor()
 cur.execute("""
             CREATE TABLE bot (
