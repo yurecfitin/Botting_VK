@@ -16,7 +16,6 @@ async def start_registration(message):
             create table bot(id TEXT)
         """)
     db.commit()
-    db.close()
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=False)
     btn1 = types.KeyboardButton("📋 Каталог")
     markup.add(btn1)
@@ -72,7 +71,7 @@ async def process_confirm(message):
             message.chat.id,
             "Хорошо, начнём заново. Напиши /start"
         )
-        
+
 async def main():
     await bot.delete_webhook()
     print("Webhook удалён, запускаем polling...")
@@ -81,3 +80,4 @@ async def main():
 if __name__ == "__main__":
     print("Бот запущен...")
     asyncio.run(main())
+db.close()
