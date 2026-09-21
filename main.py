@@ -1,11 +1,14 @@
 import json
-import vk_api
-from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
-from vk_api.keyboard import VkKeyboard, VkKeyboardColor
-from vk_api.utils import get_random_id
+import Vk_api
+import os
+from dotenv import load_dotenv
+from Vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
+from Vk_api.keyboard import VkKeyboard, VkKeyboardColor
+from Vk_api.utils import get_random_id
 
+load_dotenv()
 # --- Настройки ---
-TOKEN = "vk1.a.kSGr37A8AaX37BICfOzPzwwUVF1Fhgg8qG3I8_xRhkpY50afzQ3WaLZyMRrtPLogBEcsZqtSJd9HVJeTJxmb1nD7M3q6eyFsEeQcZK9lzMLO32F5LUQfS3gtxP2wwoBw4WqAGcNzvtGng2kvGf3gyQyxmrq75hLAsdv5B17FIKs9pda_Bm0uKTXnvj_FN5Y7lwniCeWh0r9m-00HMPmC7g"
+TOKEN = "BOT_TOKEN"
 GROUP_ID = 241613848
 
 EVENT = {
@@ -21,7 +24,7 @@ REGISTRATIONS = {}    # user_id -> {"name": ..., "city": ..., "contact": ...}
 USER_CACHE = {}       # user_id -> "Имя Фамилия"
 
 # --- Подключение ---
-vk_session = vk_api.VkApi(token=TOKEN)
+vk_session = Vk_api.VkApi(token=os.getenv("BOT_TOKEN"))
 vk = vk_session.get_api()
 longpoll = VkBotLongPoll(vk_session, group_id=GROUP_ID)
 
