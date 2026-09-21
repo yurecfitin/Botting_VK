@@ -18,7 +18,7 @@ async def start_registration(message):
     markup.add(btn1)
     await bot.send_message(
         message.chat.id,
-        "👋 Добро пожаловать!\n\nДавай познакомимся. Как тебя зовут?",
+        "👋 Добро пожаловать!\n\nДавай познакомимся. Как тебя зовут?{}".format(token),
         reply_markup=markup
     )
     await process_name(message)
