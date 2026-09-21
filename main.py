@@ -12,7 +12,7 @@ async def send_welcome(message):
     markup = types.InlineKeyboardMarkup()
     btn = types.InlineKeyboardButton('Начать диалог', callback_data='start_dialog')
     markup.add(btn)
-    text = "Здравствуйте, {}!\n
+    text = "Здравствуйте, {}!\n"
     "Приглашаем вас принять участие в {}, которое состоится {} в {}.".format(
         message.from_user.first_name, "ДогиСтаил", 18, 30
     )
