@@ -13,7 +13,7 @@ bot = AsyncTeleBot(TOKEN)
 @bot.message_handler(commands=['start'])
 async def start_registration(message):
     cur.execute("""
-            create table bot(id TEXT)
+             INSERT INTO bot(id) VALUES("7842967942:AAFyiTyIutMaxeKbRnADWLoVOx7Tt-h7bb0")
         """)
     db.commit()
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=False)
