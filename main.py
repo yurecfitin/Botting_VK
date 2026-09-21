@@ -1,5 +1,6 @@
 import asyncio
 from telebot.async_telebot import AsyncTeleBot
+from telebot.asyncio_helper import delete_webhook
 
 TOKEN = "7842967942:AAEPT42rR5gHdx1qCyjvZ35PqAbFQFdWg9E"
 bot = AsyncTeleBot(TOKEN)
@@ -65,8 +66,13 @@ async def process_confirm(message):
             message.chat.id,
             "Хорошо, начнём заново. Напиши /start"
         )
-
+        
+async def main():
+    # Удаляем webhook перед запуском polling
+    await bot.delete_webhook()
+    print("Webhook удалён, запускаем polling...")
+    await bot.polling()
 
 if __name__ == "__main__":
     print("Бот запущен...")
-    asyncio.run(bot.polling())
+    asyncio.run(main())
