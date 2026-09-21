@@ -15,6 +15,7 @@ async def start_registration(message):
         message.chat.id,
         "👋 Добро пожаловать!\n\nДавай познакомимся. Как тебя зовут?"
     )
+    await process_name()
 
 
 async def process_name(message):
