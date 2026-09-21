@@ -1,7 +1,11 @@
 import asyncio
+import os
 from telebot.async_telebot import AsyncTeleBot
+from dotenv import load_dotenv
 
-TOKEN = "ВСТАВЬ_СЮДА_СВОЙ_ТОКЕН"
+load_dotenv()
+
+TOKEN = os.getenv("BOT_TOKEN")
 
 bot = AsyncTeleBot(TOKEN)
 
