@@ -68,8 +68,7 @@ async def main():
     await bot.delete_webhook()
     print("Webhook удалён, запускаем polling...")
     await bot.polling(non_stop=True,
-        skip_pending=True,
-        allowed_updates=["message", "callback_query"])
+        skip_pending=True)
 
 if __name__ == "__main__":
     print("Бот запущен...")
