@@ -1,19 +1,20 @@
 import asyncio
 from telebot.async_telebot import AsyncTeleBot
+from telebot import types
 from telebot.asyncio_helper import delete_webhook
 
 TOKEN = "7842967942:AAEPT42rR5gHdx1qCyjvZ35PqAbFQFdWg9E"
 bot = AsyncTeleBot(TOKEN)
 
-# Временное хранилище (в реальном проекте — БД)
-user_data = {}
-
-
 @bot.message_handler(commands=['start'])
 async def start_registration(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=False)
+    btn1 = types.KeyboardButton("📋 Каталог")
+    markup.add(btn1)
     await bot.send_message(
         message.chat.id,
-        "👋 Добро пожаловать!\n\nДавай познакомимся. Как тебя зовут?"
+        "👋 Добро пожаловать!\n\nДавай познакомимся. Как тебя зовут?",
+        reply_markup=markup
     )
     await process_name(message)
 
