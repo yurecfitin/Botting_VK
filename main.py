@@ -12,7 +12,7 @@ cur.execute("""
             )
         """)
 db.commit()
-db.close()
+
 
 
 TOKEN = "7842967942:AAFyiTyIutMaxeKbRnADWLoVOx7Tt-h7bb0"
