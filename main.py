@@ -23,8 +23,8 @@ async def start_registration(message):
     )
     await process_name(message)
 
+
 async def process_name(message):
-    user_data[message.chat.id] = {"name": message.text}
     await bot.send_message(
         message.chat.id,
         f"Отлично, {message.text}!\n\nТеперь отправь свой номер телефона."
@@ -32,7 +32,6 @@ async def process_name(message):
 
 
 async def process_phone(message):
-    user_data[message.chat.id]["phone"] = message.text
     await bot.send_message(
         message.chat.id,
         "Спасибо! Укажи, пожалуйста, свой город."
@@ -40,9 +39,6 @@ async def process_phone(message):
 
 
 async def process_city(message):
-    user_data[message.chat.id]["city"] = message.text
-    data = user_data[message.chat.id]
-
     text = (
         "Проверь, пожалуйста, данные:\n\n"
         f"👤 Имя: {data['name']}\n"
@@ -57,7 +53,6 @@ async def process_confirm(message):
     answer = message.text.strip().lower()
 
     if answer in ("да", "yes", "верно", "ага"):
-        data = user_data.get(message.chat.id, {})
         await bot.send_message(
             message.chat.id,
             f"✅ Регистрация успешно завершена!\n\nСпасибо, {data.get('name', 'друг')}."
