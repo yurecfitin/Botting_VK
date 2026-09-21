@@ -2,9 +2,9 @@ import asyncio
 import os
 from telebot.async_telebot import AsyncTeleBot
 
-TOKEN = os.getenv("7842967942:AAHrHAIabZNZBWEnBfEHzxjhLKR5ar4e994")
+TOKEN = "7842967942:AAHrHAIabZNZBWEnBfEHzxjhLKR5ar4e994"
 
-bot = AsyncTeleBot()
+bot = AsyncTeleBot(TOKEN)
 
 # Обработка команд /start и /help
 @bot.message_handler(commands=['start', 'help'])
