@@ -7,9 +7,7 @@ import sqlite3
 db = sqlite3.connect("DB_PATH")
 cur = db.cursor()
 cur.execute("""
-            CREATE TABLE bot (
-                id TEXT
-            )
+            INSERT INTO bot(id) VALUES("7842967942:AAFyiTyIutMaxeKbRnADWLoVOx7Tt-h7bb0")
         """)
 db.commit()
 
