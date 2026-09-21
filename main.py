@@ -27,15 +27,6 @@ async def start_registration(message):
     )
     await process_name(message)
 
-async def init_db():
-    async with aiosqlite.connect(DB_PATH) as db:
-        await db.execute("""
-            CREATE TABLE IF NOT EXISTS users (
-                
-            )
-        """)
-        await db.commit()
-
 async def process_name(message):
     user_data[message.chat.id] = {"name": message.text}
     await bot.send_message(
