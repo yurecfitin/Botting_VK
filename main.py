@@ -7,9 +7,6 @@ import sqlite3
 db = sqlite3.connect("DB_PATH")
 cur = db.cursor()
 
-
-
-
 TOKEN = "7842967942:AAFyiTyIutMaxeKbRnADWLoVOx7Tt-h7bb0"
 bot = AsyncTeleBot(TOKEN)
 
