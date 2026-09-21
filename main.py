@@ -9,13 +9,10 @@ bot = AsyncTeleBot(token=TOKEN)
 # Обработка команд /start и /help
 @bot.message_handler(commands=['start', 'help'])
 async def send_welcome(message):
-    markup = types.InlineKeyboardMarkup()
-    btn = types.InlineKeyboardButton('Начать диалог', callback_data='start_dialog')
-    markup.add(btn)
-    text = "Здравствуйте, {}!\n"
-    "Приглашаем вас принять участие в {}, которое состоится {} в {}.".format(
-        message.from_user.first_name, "ДогиСтаил", 18, 30
-    )
+    #markup = types.InlineKeyboardMarkup()
+    #btn = types.InlineKeyboardButton('Начать диалог', callback_data='start_dialog')
+    #markup.add(btn)
+    text = "Здравствуйте, {}!\nПриглашаем вас принять участие в {}, которое состоится {} в {}.".format(message.from_user.first_name, "ДогиСтаил", 18, 30)
     await bot.send_message(message, text)
 
 # Обработка всех остальных текстовых сообщений
