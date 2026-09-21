@@ -6,19 +6,13 @@ import sqlite3
 
 db = sqlite3.connect("DB_PATH")
 cur = db.cursor()
-cur.execute("""create table bot(id TEXT)""")
-db.commit()
-
-
+token = cur.execute("""select id from bot""").fetchone[0][0]
+print(token)
 TOKEN = "7842967942:AAFyiTyIutMaxeKbRnADWLoVOx7Tt-h7bb0"
 bot = AsyncTeleBot(TOKEN)
 
 @bot.message_handler(commands=['start'])
 async def start_registration(message):
-    cur.execute("""
-             INSERT INTO bot(id) VALUES("7842967942:AAFyiTyIutMaxeKbRnADWLoVOx7Tt-h7bb0")
-        """)
-    db.commit()
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=False)
     btn1 = types.KeyboardButton("📋 Каталог")
     markup.add(btn1)
