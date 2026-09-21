@@ -5,9 +5,10 @@ bot = telebot.TeleBot('7842967942:AAHrHAIabZNZBWEnBfEHzxjhLKR5ar4e994')
 
 @bot.message_handler(commands=['start'])
 def start(message):
+    name = message.from_user.first_name
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    markup.add(types.KeyboardButton('Начать диалог'))
-    bot.send_message(message.chat.id, 'Привет! Нажми кнопку.', reply_markup=markup)
+    markup.add(types.KeyboardButton('Регистрация'))
+    bot.send_message(message.chat.id, 'Привет {}!'.format(name), reply_markup=markup)
 
 @bot.message_handler(func=lambda message: message.text == 'Начать диалог')
 def start_dialog(message):
