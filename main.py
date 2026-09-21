@@ -1,26 +1,27 @@
-import asyncio
-import os
-from telebot.async_telebot import AsyncTeleBot
-#from telebot import types
+import telebot
+from telebot import types
 
-TOKEN = "7842967942:AAHrHAIabZNZBWEnBfEHzxjhLKR5ar4e994"
+bot = telebot.TeleBot('ТВОЙ_ТОКЕН')
 
-bot = AsyncTeleBot(token=TOKEN)
-# Обработка команд /start и /help
-@bot.message_handler(commands=['start', 'help'])
-async def send_welcome(message):
-    #markup = types.InlineKeyboardMarkup()
-    #btn = types.InlineKeyboardButton('Начать диалог', callback_data='start_dialog')
-    #markup.add(btn)
-    text = "Здравствуйте, {}!\nПриглашаем вас принять участие в {}, которое состоится {} в {}.".format(message.from_user.first_name, "ДогиСтаил", 18, 30)
-    await bot.send_message(message, text)
+@bot.message_handler(commands=['start'])
+def start(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    markup.add(types.KeyboardButton('Начать диалог'))
+    bot.send_message(message.chat.id, 'Привет! Нажми кнопку.', reply_markup=markup)
 
-# Обработка всех остальных текстовых сообщений
-@bot.message_handler(func=lambda message: True)
-async def echo_message(message):
-    await bot.reply_to(message, message.text)
+@bot.message_handler(func=lambda message: message.text == 'Начать диалог')
+def start_dialog(message):
+    # Убираем reply-клавиатуру, чтобы не мешала
+    msg = bot.send_message(message.chat.id, 'Как тебя зовут?', reply_markup=types.ReplyKeyboardRemove())
+    bot.register_next_step_handler(msg, process_name)
 
-# Точка входа
-if __name__ == "__main__":
-    print("Бот запущен...")
-    asyncio.run(bot.polling())
+def process_name(message):
+    name = message.text
+    msg = bot.send_message(message.chat.id, 'Сколько тебе лет?')
+    bot.register_next_step_handler(msg, process_age, name)
+
+def process_age(message, name):
+    age = message.text
+    bot.send_message(message.chat.id, f'Приятно познакомиться, {name}! Тебе {age} лет.')
+
+bot.polling(none_stop=True)
