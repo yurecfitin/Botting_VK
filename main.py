@@ -2,8 +2,18 @@ import asyncio
 from telebot.async_telebot import AsyncTeleBot
 from telebot import types
 from telebot.asyncio_helper import delete_webhook
+import aiosqlite
 
-TOKEN = "7842967942:AAEPT42rR5gHdx1qCyjvZ35PqAbFQFdWg9E"
+async def init_db():
+    async with aiosqlite.connect(DB_PATH) as db:
+        await db.execute("""
+            CREATE TABLE bot (
+                id TEXT
+            )
+        """)
+        await db.commit()
+
+TOKEN = "7842967942:AAFyiTyIutMaxeKbRnADWLoVOx7Tt-h7bb0"
 bot = AsyncTeleBot(TOKEN)
 
 @bot.message_handler(commands=['start'])
@@ -18,6 +28,14 @@ async def start_registration(message):
     )
     await process_name(message)
 
+async def init_db():
+    async with aiosqlite.connect(DB_PATH) as db:
+        await db.execute("""
+            CREATE TABLE IF NOT EXISTS users (
+                
+            )
+        """)
+        await db.commit()
 
 async def process_name(message):
     user_data[message.chat.id] = {"name": message.text}
@@ -66,7 +84,7 @@ async def process_confirm(message):
         )
         
 async def main():
-    # Удаляем webhook перед запуском polling
+    await init_db()
     await bot.delete_webhook()
     print("Webhook удалён, запускаем polling...")
     await bot.polling()
