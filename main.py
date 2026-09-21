@@ -83,7 +83,6 @@ async def process_confirm(message):
         )
         
 async def main():
-    await init_db()
     await bot.delete_webhook()
     print("Webhook удалён, запускаем polling...")
     await bot.polling()
