@@ -23,7 +23,7 @@ async def start_registration(message):
     )
     await process_name(message)
 
-
+@bot.message_handler(commands=['num'])
 async def process_name(message):
     await bot.send_message(
         message.chat.id,
@@ -48,7 +48,7 @@ async def process_city(message):
     )
     await bot.send_message(message.chat.id, text)
 
-
+@bot.message_handler(commands=['name'])
 async def process_confirm(message):
     answer = message.text.strip().lower()
 
