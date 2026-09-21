@@ -9,7 +9,7 @@ bot = AsyncTeleBot(token=TOKEN)
 # Обработка команд /start и /help
 @bot.message_handler(commands=['start', 'help'])
 async def send_welcome(message):
-    text = 'Здравствуйте, {}!\nПриглашаем вас принять участие в {}, которое состоится {} в {}.'.format(message.user_name, "ДогиСтаил", 18, 30)
+    text = 'Здравствуйте, {}!\nПриглашаем вас принять участие в {}, которое состоится {} в {}.'.format(message.from_user.name, "ДогиСтаил", 18, 30)
     await bot.reply_to(message, text)
 
 # Обработка всех остальных текстовых сообщений
