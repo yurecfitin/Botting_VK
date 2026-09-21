@@ -2,16 +2,18 @@ import asyncio
 from telebot.async_telebot import AsyncTeleBot
 from telebot import types
 from telebot.asyncio_helper import delete_webhook
-import aiosqlite
+import sqlite
 
-async def init_db():
-    async with aiosqlite.connect(DB_PATH) as db:
-        await db.execute("""
+db = sqlite.connect(DB_PATH)
+cur = db.cursor()
+cur.execute("""
             CREATE TABLE bot (
                 id TEXT
             )
         """)
-        await db.commit()
+db.commit()
+db.close()
+
 
 TOKEN = "7842967942:AAFyiTyIutMaxeKbRnADWLoVOx7Tt-h7bb0"
 bot = AsyncTeleBot(TOKEN)
