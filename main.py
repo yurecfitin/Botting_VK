@@ -4,7 +4,7 @@ from telebot.async_telebot import AsyncTeleBot
 
 TOKEN = "7842967942:AAHrHAIabZNZBWEnBfEHzxjhLKR5ar4e994"
 
-bot = AsyncTeleBot(TOKEN)
+bot = AsyncTeleBot(token=TOKEN)
 
 # Обработка команд /start и /help
 @bot.message_handler(commands=['start', 'help'])
