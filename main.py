@@ -1,7 +1,7 @@
 import asyncio
 from telebot.async_telebot import AsyncTeleBot
 
-TOKEN = "ВСТАВЬ_СЮДА_СВОЙ_ТОКЕН"
+TOKEN = "7842967942:AAEPT42rR5gHdx1qCyjvZ35PqAbFQFdWg9E"
 bot = AsyncTeleBot(TOKEN)
 
 # Временное хранилище (в реальном проекте — БД)
