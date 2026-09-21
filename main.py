@@ -15,7 +15,6 @@ async def start_registration(message):
         message.chat.id,
         "👋 Добро пожаловать!\n\nДавай познакомимся. Как тебя зовут?"
     )
-    await bot.register_next_step_handler(message, process_name)
 
 
 async def process_name(message):
@@ -24,7 +23,6 @@ async def process_name(message):
         message.chat.id,
         f"Отлично, {message.text}!\n\nТеперь отправь свой номер телефона."
     )
-    await bot.register_next_step_handler(message, process_phone)
 
 
 async def process_phone(message):
@@ -33,7 +31,6 @@ async def process_phone(message):
         message.chat.id,
         "Спасибо! Укажи, пожалуйста, свой город."
     )
-    await bot.register_next_step_handler(message, process_city)
 
 
 async def process_city(message):
@@ -48,7 +45,6 @@ async def process_city(message):
         "Всё верно? Напиши «Да» или «Нет»."
     )
     await bot.send_message(message.chat.id, text)
-    await bot.register_next_step_handler(message, process_confirm)
 
 
 async def process_confirm(message):
