@@ -183,6 +183,7 @@ async def get_all_registrations():
             "SELECT user_id, username, last_name, first_name, phone, qualification, registered_at FROM registrations"
         )
         return await cursor.fetchall()
+print(get_all_registrations())
 
 # ================== СОСТОЯНИЯ ==================
 class Form(StatesGroup):
